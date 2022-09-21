@@ -62,33 +62,66 @@ public class FirstFragment extends Fragment {
         p1vida = (TextView) view.findViewById(R.id.p1vida);
         p2vida = (TextView) view.findViewById(R.id.p2vida);
 
-        botonabajo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                vida1--;
-                vida2++;
-                updateviews();
-            }
-        });
-        botonarriba.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                vida1++;
-                vida2--;
-                updateviews();
-            }
-        });
-        p1venenomas.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                veneno1++;
-                updateviews();
-            }
-        });
+        View.OnClickListener listener = new View.OnClickListener(){
 
+            @Override
+            public void onClick(View view) {
+                switch (view.getId()){
+                    case R.id.botonabajo:
+                        vida1--;
+                        vida2++;
+                        break;
 
+                    case R.id.botonarriba:
+                        vida1++;
+                        vida2--;
+                        break;
+                    case R.id.p1venenomas:
+                        veneno1++;
+                        break;
+                    case R.id.p1venenomenos:
+                        veneno1--;
+                        break;
+                    case R.id.p2venenomas:
+                        veneno2++;
+                        break;
+                    case R.id.p2venenomenos:
+                        veneno2--;
+                        break;
+                    case R.id.p1vidamas:
+                        vida1++;
+                        break;
+                    case R.id.p1vidamenos:
+                        vida1--;
+                        break;
+                    case R.id.p2vidamas:
+                        vida2++;
+                        break;
+                    case R.id.p2vidamenos:
+                        vida2--;
+                        break;
+
+                }
+                updateViews();
+            }
+        };
         reset();
 
+        botonabajo.setOnClickListener(listener);
+        botonarriba.setOnClickListener(listener);
+        p1venenomas.setOnClickListener(listener);
+        p1venenomenos.setOnClickListener(listener);
+        p2venenomas.setOnClickListener(listener);
+        p2venenomenos.setOnClickListener(listener);
+        p1vidamas.setOnClickListener(listener);
+        p1vidamenos.setOnClickListener(listener);
+        p2vidamas.setOnClickListener(listener);
+        p2vidamenos.setOnClickListener(listener);
+        p1vida.setOnClickListener(listener);
+        p2vida.setOnClickListener(listener);
+
+
+        //return view;
 
     }
 
@@ -97,10 +130,10 @@ public class FirstFragment extends Fragment {
         vida2=20;
         veneno1=0;
         veneno2=0;
-        updateviews();
+        updateViews();
     }
 
-    private void updateviews() {
+    private void updateViews() {
         p1vida.setText(String.format("%d/%d",vida1,veneno1));
         p2vida.setText(String.format("%d/%d",vida2,veneno2));
     }
