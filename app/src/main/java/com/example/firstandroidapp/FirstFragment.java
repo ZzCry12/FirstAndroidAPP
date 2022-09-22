@@ -46,6 +46,13 @@ public class FirstFragment extends Fragment {
     ) {
 
         binding = FragmentFirstBinding.inflate(inflater, container, false);
+        if (savedInstanceState!=null){
+            vida1 = savedInstanceState.getInt("p1vida");
+            vida2 = savedInstanceState.getInt("p2vida");
+            veneno1 = savedInstanceState.getInt("veneno1");
+            veneno2 = savedInstanceState.getInt("veneno2");
+        }
+        giro();
         return binding.getRoot();
 
     }
@@ -134,6 +141,11 @@ public class FirstFragment extends Fragment {
 
     }
 
+    private void giro(){
+        binding.p1vida.setText(vida1+"/"+veneno1);
+        binding.p2vida.setText(vida2+"/"+veneno2);
+    }
+
     private void reset() {
         vida1=20;
         vida2=20;
@@ -153,4 +165,12 @@ public class FirstFragment extends Fragment {
         binding = null;
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle outState){
+        outState.putInt("p1vida", vida1);
+        outState.putInt("p2vida", vida2);
+        outState.putInt("veneno1", veneno1);
+        outState.putInt("veneno2", veneno2);
+        super.onSaveInstanceState(outState);
+    }
 }
