@@ -173,4 +173,7 @@ public class FirstFragment extends Fragment {
         outState.putInt("veneno2", veneno2);
         super.onSaveInstanceState(outState);
     }
+
+  //  @Override
+   // Boton de reset incoming
 }
